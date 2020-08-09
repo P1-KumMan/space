@@ -1,15 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import DatePickers from "./Date";
-import BasicButtonGroup from "./Button";
+import axios from "axios";
+import DatePickers from "./components/Date";
+import BasicButtonGroup from "./components/Button";
+import MediaCard from "./components/Cards";
 
-function App() {
+const App = () => {
+  const [item, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const fetechItems = async () => {
+      const result = await axios(
+        `https://api.spacexdata.com/v4/launches/latest`
+      );
+      setItems(result.data);
+      setIsLoading(false);
+      console.log(result.data);
+    };
+    fetechItems();
+  }, []);
   return (
     <div className="App">
       <DatePickers></DatePickers>
       <BasicButtonGroup />
+      <MediaCard items={item} isLoading={isLoading}></MediaCard>
     </div>
   );
-}
+};
 
 export default App;
