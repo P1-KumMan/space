@@ -23,7 +23,6 @@ export default function MediaCard({ items, isLoading }) {
   if (items && items.links && items.links.patch && items.links.patch.small) {
     small = items.links.patch.small;
   }
-  console.log(small);
   return (
     <Card className={classes.root}>
       <CardActionArea>
