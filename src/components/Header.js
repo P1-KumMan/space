@@ -1,74 +1,34 @@
 import React from "react";
-import Home from "module";
+import { Link } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Home from "./Home";
+import Starlink from "./Starlink";
+import Sat from "./Sat";
 import Rockets from "./Rockets";
 import Rocket from "./Rocket";
 import Dragon from "./Dragon";
 import Dragons from "./Dragons";
-import Starlink from "./Startlink";
-import Sat from "./Sat";
 
-import { Link, Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import { Switch, Route, Link as RouterLink } from "react-router-dom";
-
-export const Header = () => {
-  const classes = useStyles();
+const Header = () => {
   return (
-    <div className="space">
-      <nav className={classes.menu}>
-        <Link component={RouterLink} to="/">
-          <Button color="primary">Home</Button>
-        </Link>
-        <Link component={RouterLink} to="/Rockets">
-          <Button color="primary">Rockets</Button>
-        </Link>
-        <Link component={RouterLink} to="/Starlink">
-          <Button color="primary">Starlink</Button>
-        </Link>
-        <Link component={RouterLink} to="/Dragons">
-          <Button color="primary">Dragon</Button>
-        </Link>
-      </nav>
-      <main className={classes.main}>
+    <div>
+      <BrowserRouter>
+        <Link to="/">Home</Link>
+        <Link to="/dragons">Dragon</Link>
+        <Link to="/Rockets">Rockets</Link>
+        <Link to="/Starlink">StarLink</Link>
         <Switch>
-          <Route exact path="/Rockets">
-            <Rockets />
-          </Route>
-          <Route exact path="/Rockets/:rocketId">
-            <Rocket />
-          </Route>
-          <Route exact path="/Dragons">
-            <Dragons />
-          </Route>
-          <Route exact path="/Dragons/:dragonId">
-            <Dragon />
-          </Route>
-          <Route exact path="/Starlink">
-            <Starlink />
-          </Route>
-          <Route exact path="/Starlink/:satId">
-            <Sat />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
+          <Route path="/" exact component={Home} />
+          <Route path="/starlink" component={Starlink} />
+          <Route path="/sat/:id" component={Sat} />
+          <Route path="/rockets" component={Rockets} />
+          <Route path="/rocket/:id" component={Rocket} />
+          <Route path="/dragons" component={Dragons} />
+          <Route path="/dragon/:id" component={Dragon} />
         </Switch>
-      </main>
+      </BrowserRouter>
     </div>
   );
 };
-const useStyles = makeStyles((theme) => ({
-  main: {
-    margin: "0 auto",
-    padding: "16px",
-  },
-  menu: {
-    margin: "0 auto",
-    display: "flex",
-    justifyContent: "center",
-    backgroundColor: "#CCC",
-    "& button": {
-      margin: theme.spacing(1),
-    },
-  },
-}));
+
+export default Header;
