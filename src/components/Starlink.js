@@ -15,7 +15,7 @@ const Starlink = () => {
       <h2>Satalites</h2>
       {data.data.map((sat) => {
         return (
-          <Link key={sat.id} to={`/characters/${sat.id}`}>
+          <Link key={sat.id} to={`/sat/${sat.id}`}>
             {sat.id} statalite
             <br></br>
           </Link>
