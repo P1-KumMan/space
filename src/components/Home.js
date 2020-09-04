@@ -3,6 +3,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { BrowserRouter } from "react-router-dom";
 import {
     Grid,
     Paper,
@@ -11,7 +12,7 @@ import {
     CardContent,
     CardHeader,
 } from "@material-ui/core";
-
+import SCard from "./ui/Card.js";
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -46,8 +47,11 @@ const useStyles = makeStyles((theme) => ({
 export default function Home() {
     const classes = useStyles();
     return (
-        <Grid container className={classes.root}>
-            <Grid item xs={12}></Grid>
-        </Grid>
+        <div className={classes.root}>
+            <br></br>
+            <br></br>
+            <br></br>
+            <SCard />
+        </div>
     );
 }

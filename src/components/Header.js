@@ -1,6 +1,6 @@
 import React from "react";
 import { Link as Rlink } from "react-router-dom";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Home from "./Home";
 import Starlink from "./Starlink";
 import Sat from "./Sat";
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
         color: "white",
         backgroundColor: "black",
     },
+    Button: { font: "D-DIN-Regular", fontWeight: "400" },
 }));
 function HideOnScroll(props) {
     const { children, window } = props;
@@ -53,63 +54,75 @@ const Header = () => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-            <BrowserRouter>
-                <HideOnScroll>
-                    <AppBar className={classes.app}>
-                        <Toolbar>
-                            <IconButton
-                                edge="start"
-                                className={classes.menuButton}
+            <HideOnScroll>
+                <AppBar className={classes.app} position="absolute">
+                    <Toolbar>
+                        <IconButton
+                            edge="start"
+                            className={classes.menuButton}
+                            color="inherit"
+                            aria-label="menu"
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography className={classes.menuButton}>
+                            <Link color="inherit" component={Rlink} to="/">
+                                <Button className="te" color="inherit">
+                                    Home
+                                </Button>
+                            </Link>
+                        </Typography>
+                        <Typography className={classes.menuButton}>
+                            <Link
                                 color="inherit"
-                                aria-label="menu"
+                                component={Rlink}
+                                to="/dragons"
                             >
-                                <MenuIcon />
-                            </IconButton>
-                            <Typography className={classes.menuButton}>
-                                <Link color="inherit" component={Rlink} to="/">
-                                    <Button color="inherit">Home</Button>
-                                </Link>
-                            </Typography>
-                            <Typography className={classes.menuButton}>
-                                <Link
-                                    color="inherit"
-                                    component={Rlink}
-                                    to="/dragons"
-                                >
-                                    <Button color="inherit">Dragon</Button>
-                                </Link>
-                            </Typography>
-                            <Typography className={classes.menuButton}>
-                                <Link
-                                    color="inherit"
-                                    component={Rlink}
-                                    to="/rockets"
-                                >
-                                    <Button color="inherit">Rockets</Button>
-                                </Link>
-                            </Typography>
-                            <Typography className={classes.menuButton}>
-                                <Link
-                                    color="inherit"
-                                    component={Rlink}
-                                    to="/starlink"
-                                >
-                                    <Button color="inherit">Starlink</Button>
-                                </Link>
-                            </Typography>
-                        </Toolbar>
-                    </AppBar>
-                </HideOnScroll>
-                <Switch>
-                    <Route path="/" exact component={Home} />
-                    <Route path="/starlink" component={Starlink} />
-                    <Route path="/sat/:id" component={Sat} />
-                    <Route path="/rockets" component={Rockets} />
-                    <Route path="/rocket/:id" component={Rocket} />
-                    <Route path="/dragons" component={Dragons} />
-                    <Route path="/dragon/:id" component={Dragon} />
-                </Switch>
-            </BrowserRouter>
+                                <Button color="inherit">
+                                    <Typography font="D-DIN-Regular">
+                                        Dragon
+                                    </Typography>
+                                </Button>
+                            </Link>
+                        </Typography>
+                        <Typography className={classes.menuButton}>
+                            <Link
+                                color="inherit"
+                                component={Rlink}
+                                to="/rockets"
+                            >
+                                <Button color="inherit">Rockets</Button>
+                            </Link>
+                        </Typography>
+                        <Typography className={classes.menuButton}>
+                            <Link
+                                color="inherit"
+                                component={Rlink}
+                                to="/starlink"
+                            >
+                                <Button color="inherit">Starlink</Button>
+                            </Link>
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+            </HideOnScroll>
+            <Switch>
+                <Route path="/" exact>
+                    <Home />
+                </Route>
+                <Route path="/starlink">
+                    <Starlink />
+                </Route>
+                <Route path="/sat/:id">
+                    <Sat />
+                </Route>
+                <Route path="/rockets">
+                    <Rockets />
+                </Route>
+                <Route path="/rocket/:id" component={Rocket} />
+                <Route path="/dragons" component={Dragons} />
+                <Route path="/dragon/:id" component={Dragon} />
+            </Switch>
         </div>
     );
 };
