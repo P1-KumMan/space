@@ -34,9 +34,14 @@ const LatestCard = () => {
         <Card className={classes.root}>
             <CardActionArea className={classes.details}>
                 <CardContent className={classes.cont}>
-                    <Typography variant="h4" component="h4" color="inherit">
+                    <Typography variant="h6" component="h6" color="inherit">
                         Latest Launch
                     </Typography>
+                    <Typography
+                        variant="h4"
+                        component="h4"
+                        color="inherit"
+                    ></Typography>
                     <Typography variant="body2" color="inherit" component="p">
                         Lizards are a widespread group of squamate reptiles,
                         with over 6,000 species, ranging across all continents
