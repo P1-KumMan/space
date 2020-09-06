@@ -5,7 +5,7 @@ import Header from "./components/Header";
 
 const App = () => {
     return (
-        <div>
+        <div style={{ backgroundColor: "black" }}>
             <BrowserRouter>
                 <Header />
             </BrowserRouter>

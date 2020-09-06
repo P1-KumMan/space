@@ -10,38 +10,42 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 345,
+        display: "flex",
+        backgroundColor: "black",
+        marginBottom: ".5rem",
+    },
+    details: {
+        display: "flex",
+        flexDirection: "row",
     },
     media: {
         width: "100%",
-        height: "15vw",
+        height: "500px",
         objectFit: "contain",
-        flex: "1 0 auto",
+    },
+    cont: {
+        color: "white",
     },
 });
-const SCard = () => {
+const F9Card = () => {
     const classes = useStyles();
     const theme = useTheme();
     return (
         <Card className={classes.root}>
-            <CardActionArea>
+            <CardActionArea className={classes.details}>
                 <CardMedia
                     className={classes.media}
-                    image="https://i.imgur.com/CT0vIoh.png"
-                    title="Contemplative Reptile"
+                    image="https://www.spacex.com/static/images/falcon-9/F9_7.webp"
+                    title="Falcon 9"
                 />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        Lizard
+                <CardContent className={classes.cont}>
+                    <Typography variant="h4" component="h4" color="inherit">
+                        Falcon 9
                     </Typography>
-                    <Typography
-                        variant="body2"
-                        color="textSecondary"
-                        component="p"
-                    >
-                        Lizards are a widespread group of squamate reptiles,
-                        with over 6,000 species, ranging across all continents
-                        except Antarctica
+                    <Typography variant="body2" color="inherit" component="p">
+                        Falcon 9 is a two-stage rocket designed and manufactured
+                        by SpaceX for the reliable and safe transport of
+                        satellites and the Dragon spacecraft into orbit.
                     </Typography>
                 </CardContent>
             </CardActionArea>
@@ -49,4 +53,4 @@ const SCard = () => {
     );
 };
 
-export default SCard;
+export default F9Card;

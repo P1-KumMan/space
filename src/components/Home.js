@@ -12,46 +12,29 @@ import {
     CardContent,
     CardHeader,
 } from "@material-ui/core";
-import SCard from "./ui/Card.js";
+import LatestCard from "./ui/LatestCard.js";
+import F9Card from "./ui/F9Card";
+import FHCard from "./ui/FHCard";
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-    },
-    paper: {
-        padding: theme.spacing(2),
-        margin: "0",
         backgroundColor: "black",
-    },
-    image: {
-        // width: 800,
-        // height: 500,
-    },
-    img: {
-        margin: "100px",
-        display: "block",
-        maxWidth: "100%",
-        maxHeight: "100%",
-    },
-    font: {
-        fontFamily: "sans-serif",
-        color: "white",
-    },
-    ca: {
-        backgroundColor: "black",
-    },
-    card: {
-        width: "1510px",
-        backgroundColor: "black",
+        maxWidth: "sm",
     },
 }));
 export default function Home() {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
-            <br></br>
-            <br></br>
-            <br></br>
-            <SCard />
-        </div>
+        <Grid container className={classes.root}>
+            <Grid item xs={12}>
+                <LatestCard />
+            </Grid>
+            <Grid item xs={12}>
+                <F9Card />
+            </Grid>
+            <Grid item xs={12}>
+                <FHCard />
+            </Grid>
+        </Grid>
     );
 }

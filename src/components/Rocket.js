@@ -8,13 +8,9 @@ const Rocket = () => {
     return (
         <div>
             <Typography variant="h4">{id}</Typography>
-            <br></br>
             <Typography variant="h4">{id}</Typography>
-            <br></br>
             <Typography variant="h4">{id}</Typography>
-            <br></br>
             <Typography variant="h4">{id}</Typography>
-            <br></br>
         </div>
     );
 };

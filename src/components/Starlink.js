@@ -13,12 +13,11 @@ const Starlink = () => {
     console.log(data);
     return (
         <div>
-            <Typography varient="h2">Sat</Typography>
+            <Typography variant="h2">Sat</Typography>
             {data.data.map((sat) => {
                 return (
                     <Link key={sat.id} to={`/sat/${sat.id}`}>
                         {sat.id} statalite
-                        <br></br>
                     </Link>
                 );
             })}

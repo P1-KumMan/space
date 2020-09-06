@@ -12,7 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { Link, Button } from "@material-ui/core";
+import { Link, Button, Container } from "@material-ui/core";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -21,9 +21,10 @@ import Slide from "@material-ui/core/Slide";
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        margin: 0,
     },
     menuButton: {
-        marginRight: theme.spacing(2),
+        marginRight: theme.spacing(0),
         color: "i",
     },
     title: {
@@ -31,9 +32,15 @@ const useStyles = makeStyles((theme) => ({
     },
     app: {
         margin: 0,
+        padding: 0,
         color: "white",
         backgroundColor: "black",
     },
+    main: {
+        padding: ".5rem",
+        backgroundColor: "black",
+    },
+
     Button: { font: "D-DIN-Regular", fontWeight: "400" },
 }));
 function HideOnScroll(props) {
@@ -49,13 +56,12 @@ function HideOnScroll(props) {
         </Slide>
     );
 }
-
 const Header = () => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
             <HideOnScroll>
-                <AppBar className={classes.app} position="absolute">
+                <AppBar className={classes.app} position="sticky">
                     <Toolbar>
                         <IconButton
                             edge="start"
@@ -106,23 +112,25 @@ const Header = () => {
                     </Toolbar>
                 </AppBar>
             </HideOnScroll>
-            <Switch>
-                <Route path="/" exact>
-                    <Home />
-                </Route>
-                <Route path="/starlink">
-                    <Starlink />
-                </Route>
-                <Route path="/sat/:id">
-                    <Sat />
-                </Route>
-                <Route path="/rockets">
-                    <Rockets />
-                </Route>
-                <Route path="/rocket/:id" component={Rocket} />
-                <Route path="/dragons" component={Dragons} />
-                <Route path="/dragon/:id" component={Dragon} />
-            </Switch>
+            <main className={classes.main}>
+                <Switch>
+                    <Route path="/" exact>
+                        <Home />
+                    </Route>
+                    <Route path="/starlink">
+                        <Starlink />
+                    </Route>
+                    <Route path="/sat/:id">
+                        <Sat />
+                    </Route>
+                    <Route path="/rockets">
+                        <Rockets />
+                    </Route>
+                    <Route path="/rocket/:id" component={Rocket} />
+                    <Route path="/dragons" component={Dragons} />
+                    <Route path="/dragon/:id" component={Dragon} />
+                </Switch>
+            </main>
         </div>
     );
 };
