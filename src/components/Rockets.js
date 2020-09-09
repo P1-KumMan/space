@@ -39,6 +39,7 @@ const Rockets = () => {
     const { status, data } = useQuery("rocks", () =>
         fetch("https://api.spacexdata.com/v4/rockets")
     );
+
     if (status === "loading") return <p>Loading...</p>;
     if (status === "error") return <p>Error :(</p>;
 
@@ -51,20 +52,14 @@ const Rockets = () => {
                 </Typography>
             </Grid>
             {data.data.map((rok) => {
-                let a;
-                if (rok && rok.fliker_images) {
-                    a = rok.fliker_images[2];
-                }
-                console.log(a);
                 return (
                     <Grid item xs={6}>
                         <Card key={rok.id} to={`/rocket/${rok.id}`}>
-                            <CardMedia
-                                className={classes.media}
-                                src={a}
-                            ></CardMedia>
-
                             <CardContent className={classes.card}>
+                                {rok.flickr_images.map((img) => {
+                                    console.log(img);
+                                    return <div>{img}</div>;
+                                })}
                                 <Typography
                                     variant="h4"
                                     component="h4"
@@ -78,17 +73,6 @@ const Rockets = () => {
                                     component="p"
                                 >
                                     {rok.description}
-                                </Typography>
-                                <Typography
-                                    variant="body2"
-                                    color="inherit"
-                                    component="p"
-                                >
-                                    {
-                                        (a =
-                                            rok.fliker_images &&
-                                            rok.fliker_images[1])
-                                    }
                                 </Typography>
                             </CardContent>
                         </Card>
