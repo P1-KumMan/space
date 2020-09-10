@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles({
     root: {
         display: "flex",
-        backgroundColor: "black",
+        backgroundColor: "#212121",
         marginBottom: ".5rem",
     },
     details: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     },
     media: {
         width: "100%",
-        height: "500px",
+        height: 400,
         objectFit: "contain",
     },
     cont: {

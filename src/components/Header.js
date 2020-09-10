@@ -1,6 +1,7 @@
 import React from "react";
 import { Link as Rlink } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import Home from "./Home";
 import Starlink from "./Starlink";
 import Sat from "./Sat";
@@ -12,7 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import { Link, Button, Container } from "@material-ui/core";
+import { Link, Button, Container, Grid } from "@material-ui/core";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -22,6 +23,9 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         margin: 0,
+        padding: 0,
+        color: "white",
+        backgroundColor: "black",
     },
     menuButton: {
         marginRight: theme.spacing(0),
@@ -59,79 +63,81 @@ function HideOnScroll(props) {
 const Header = () => {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
-            <HideOnScroll>
-                <AppBar className={classes.app} position="sticky">
-                    <Toolbar>
-                        <IconButton
-                            edge="start"
-                            className={classes.menuButton}
-                            color="inherit"
-                            aria-label="menu"
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography className={classes.menuButton}>
-                            <Link color="inherit" component={Rlink} to="/">
-                                <Button className="te" color="inherit">
-                                    Home
-                                </Button>
-                            </Link>
-                        </Typography>
-                        <Typography className={classes.menuButton}>
-                            <Link
+        <BrowserRouter>
+            <Container maxWidth="lg" className={classes.root}>
+                <HideOnScroll>
+                    <AppBar className={classes.app} position="sticky">
+                        <Toolbar>
+                            <IconButton
+                                edge="start"
+                                className={classes.menuButton}
                                 color="inherit"
-                                component={Rlink}
-                                to="/dragons"
+                                aria-label="menu"
                             >
-                                <Button color="inherit">
-                                    <Typography font="D-DIN-Regular">
-                                        Dragon
-                                    </Typography>
-                                </Button>
-                            </Link>
-                        </Typography>
-                        <Typography className={classes.menuButton}>
-                            <Link
-                                color="inherit"
-                                component={Rlink}
-                                to="/rockets"
-                            >
-                                <Button color="inherit">Rockets</Button>
-                            </Link>
-                        </Typography>
-                        <Typography className={classes.menuButton}>
-                            <Link
-                                color="inherit"
-                                component={Rlink}
-                                to="/starlink"
-                            >
-                                <Button color="inherit">Starlink</Button>
-                            </Link>
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-            </HideOnScroll>
-            <main className={classes.main}>
-                <Switch>
-                    <Route path="/" exact>
-                        <Home />
-                    </Route>
-                    <Route path="/starlink">
-                        <Starlink />
-                    </Route>
-                    <Route path="/sat/:id">
-                        <Sat />
-                    </Route>
-                    <Route path="/rockets">
-                        <Rockets />
-                    </Route>
-                    <Route path="/rocket/:id" component={Rocket} />
-                    <Route path="/dragons" component={Dragons} />
-                    <Route path="/dragon/:id" component={Dragon} />
-                </Switch>
-            </main>
-        </div>
+                                <MenuIcon />
+                            </IconButton>
+                            <Typography className={classes.menuButton}>
+                                <Link color="inherit" component={Rlink} to="/">
+                                    <Button className="te" color="inherit">
+                                        Home
+                                    </Button>
+                                </Link>
+                            </Typography>
+                            <Typography className={classes.menuButton}>
+                                <Link
+                                    color="inherit"
+                                    component={Rlink}
+                                    to="/dragons"
+                                >
+                                    <Button color="inherit">
+                                        <Typography font="D-DIN-Regular">
+                                            Dragon
+                                        </Typography>
+                                    </Button>
+                                </Link>
+                            </Typography>
+                            <Typography className={classes.menuButton}>
+                                <Link
+                                    color="inherit"
+                                    component={Rlink}
+                                    to="/rockets"
+                                >
+                                    <Button color="inherit">Rockets</Button>
+                                </Link>
+                            </Typography>
+                            <Typography className={classes.menuButton}>
+                                <Link
+                                    color="inherit"
+                                    component={Rlink}
+                                    to="/starlink"
+                                >
+                                    <Button color="inherit">Starlink</Button>
+                                </Link>
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
+                </HideOnScroll>
+                <Grid className={classes.main}>
+                    <Switch>
+                        <Route path="/" exact>
+                            <Home />
+                        </Route>
+                        <Route path="/starlink">
+                            <Starlink />
+                        </Route>
+                        <Route path="/sat/:id">
+                            <Sat />
+                        </Route>
+                        <Route path="/rockets">
+                            <Rockets />
+                        </Route>
+                        <Route path="/rocket/:id" component={Rocket} />
+                        <Route path="/dragons" component={Dragons} />
+                        <Route path="/dragon/:id" component={Dragon} />
+                    </Switch>
+                </Grid>
+            </Container>
+        </BrowserRouter>
     );
 };
 

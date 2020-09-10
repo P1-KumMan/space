@@ -1,15 +1,13 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
+import { Container } from "@material-ui/core";
 
 const App = () => {
     return (
-        <div style={{ backgroundColor: "black" }}>
-            <BrowserRouter>
-                <Header />
-            </BrowserRouter>
-        </div>
+        <Container>
+            <Header />
+        </Container>
     );
 };
 
