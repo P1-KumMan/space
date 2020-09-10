@@ -8,6 +8,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Carousel from "react-material-ui-carousel";
 
 const useStyles = makeStyles({
     root: {},
@@ -43,18 +44,31 @@ const Dragons = () => {
     if (status === "error") return <p>Error :(</p>;
     console.info(data);
     return (
-        <div>
-            <h2>Dragons</h2>
+        <Grid container className={classes.root} direction="row">
+            <Grid item xs={12}>
+                <Typography className={classes.head} variant="h1">
+                    Dragons
+                </Typography>
+            </Grid>
             {data.data.map((dragon) => {
                 console.log(dragon);
                 return (
-                    <Grid item xs={6}>
+                    <Grid item xs={6} className={classes.root}>
                         <Card key={dragon.id} to={`/rocket/${dragon.id}`}>
-                            {dragon.flickr_images.map((img) => {
-                                console.log(img);
-                                return <div>{img}</div>;
-                            })}
                             <CardContent className={classes.card}>
+                                <Carousel>
+                                    {dragon.flickr_images.map((img, i) => (
+                                        <CardMedia
+                                            style={{
+                                                width: "100%",
+                                                height: 380,
+                                                objectFit: "cover",
+                                            }}
+                                            image={img}
+                                            alt={dragon.name}
+                                        />
+                                    ))}
+                                </Carousel>
                                 <Typography
                                     variant="h4"
                                     component="h4"
@@ -74,7 +88,7 @@ const Dragons = () => {
                     </Grid>
                 );
             })}
-        </div>
+        </Grid>
     );
 };
 

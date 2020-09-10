@@ -2,12 +2,13 @@ import React from "react";
 import { useQuery } from "react-query";
 import fetch from "./fetch";
 import { Link } from "react-router-dom";
-import { Grid } from "@material-ui/core";
+import { Grid, Paper, Button } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Carousel from "react-material-ui-carousel";
 
 const useStyles = makeStyles({
     root: {},
@@ -56,10 +57,19 @@ const Rockets = () => {
                     <Grid item xs={6}>
                         <Card key={rok.id} to={`/rocket/${rok.id}`}>
                             <CardContent className={classes.card}>
-                                {rok.flickr_images.map((img) => {
-                                    console.log(img);
-                                    return <div>{img}</div>;
-                                })}
+                                <Carousel>
+                                    {rok.flickr_images.map((img, i) => (
+                                        <CardMedia
+                                            style={{
+                                                width: "100%",
+                                                height: 400,
+                                                objectFit: "cover",
+                                            }}
+                                            image={img}
+                                            alt={rok.name}
+                                        />
+                                    ))}
+                                </Carousel>
                                 <Typography
                                     variant="h4"
                                     component="h4"
@@ -82,5 +92,13 @@ const Rockets = () => {
         </Grid>
     );
 };
+// function Item(props) {
+//     return (
+//         <Paper>
+//             <img src={props.img} alt="ll" />
+//             <Button className="CheckButton">Check it out!</Button>
+//         </Paper>
+//     );
+// }
 
 export default Rockets;
