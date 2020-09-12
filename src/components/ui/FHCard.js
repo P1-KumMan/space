@@ -4,9 +4,10 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { useQuery } from "react-query";
+import fetch from "../fetch";
+import { withRouter } from "react-router-dom";
 
 const useStyles = makeStyles({
     root: {
@@ -27,23 +28,29 @@ const useStyles = makeStyles({
         color: "white",
     },
 });
-const FHCard = () => {
+const FHCard = withRouter(({ history }) => {
     const classes = useStyles();
     const theme = useTheme();
+    const { status, data } = useQuery("data", () =>
+        fetch("https://api.spacexdata.com/v4/rockets/5e9d0d95eda69974db09d1ed")
+    );
+    if (status === "loading") return <p>Loading...</p>;
+    if (status === "error") return <p>Error :(</p>;
+    // console.info(data);
     return (
         <Card className={classes.root}>
-            <CardActionArea className={classes.details}>
+            <CardActionArea
+                className={classes.details}
+                onClick={() => {
+                    history.push(`/rocket/${data.data.id}`);
+                }}
+            >
                 <CardContent className={classes.cont}>
                     <Typography variant="h4" component="h4" color="inherit">
-                        Falcon Heavy
+                        {data.data.name}
                     </Typography>
                     <Typography variant="body2" color="inherit" component="p">
-                        With the ability to lift into orbit over 54 metric tons
-                        (119,000 lb)--a mass equivalent to a 737 jetliner loaded
-                        with passengers, crew, luggage and fuel--Falcon Heavy
-                        can lift more than twice the payload of the next closest
-                        operational vehicle, the Delta IV Heavy, at one-third
-                        the cost.
+                        {data.data.description}
                     </Typography>
                 </CardContent>
                 <CardMedia
@@ -54,6 +61,6 @@ const FHCard = () => {
             </CardActionArea>
         </Card>
     );
-};
+});
 
 export default FHCard;

@@ -7,6 +7,9 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { useQuery } from "react-query";
+import fetch from "../fetch";
+import { Link, withRouter } from "react-router-dom";
 
 const useStyles = makeStyles({
     root: {
@@ -27,11 +30,21 @@ const useStyles = makeStyles({
         color: "white",
     },
 });
-const F9Card = () => {
+const F9Card = withRouter(({ history }) => {
     const classes = useStyles();
-    const theme = useTheme();
+    const { status, data } = useQuery("f9", () =>
+        fetch("https://api.spacexdata.com/v4/rockets/5e9d0d95eda69973a809d1ec")
+    );
+    if (status === "loading") return <p>Loading...</p>;
+    if (status === "error") return <p>Error :(</p>;
+    // console.info(data);
     return (
-        <Card className={classes.root}>
+        <Card
+            className={classes.root}
+            onClick={() => {
+                history.push(`/rocket/${data.data.id}`);
+            }}
+        >
             <CardActionArea className={classes.details}>
                 <CardMedia
                     className={classes.media}
@@ -40,17 +53,15 @@ const F9Card = () => {
                 />
                 <CardContent className={classes.cont}>
                     <Typography variant="h4" component="h4" color="inherit">
-                        Falcon 9
+                        {data.data.name}
                     </Typography>
                     <Typography variant="body2" color="inherit" component="p">
-                        Falcon 9 is a two-stage rocket designed and manufactured
-                        by SpaceX for the reliable and safe transport of
-                        satellites and the Dragon spacecraft into orbit.
+                        {data.data.description}
                     </Typography>
                 </CardContent>
             </CardActionArea>
         </Card>
     );
-};
+});
 
 export default F9Card;

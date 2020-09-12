@@ -2,7 +2,13 @@ import React from "react";
 import { useQuery } from "react-query";
 import fetch from "./fetch";
 import { Link } from "react-router-dom";
-import { Grid, Paper, Button, Container } from "@material-ui/core";
+import {
+    Grid,
+    Paper,
+    Button,
+    Container,
+    CardActionArea,
+} from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -37,47 +43,57 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Rockets = () => {
+const Rockets = ({ history }) => {
     const classes = useStyles();
     const theme = useTheme();
-    const { status, data } = useQuery("rocks", () =>
+    const { status, data } = useQuery("rockets", () =>
         fetch("https://api.spacexdata.com/v4/rockets")
     );
-
     if (status === "loading") return <p>Loading...</p>;
-    if (status === "error") return <p>Error :(</p>;
-
-    // console.info(data);
+    if (status === "error") return <p>Error :(</p>; // console.info(data);
+    if (status === "success") console.log(data);
     return (
-        <Container maxWidth="lg">
-            <Grid container className={classes.root} direction="row">
-                <Grid item xs={12}>
-                    <Typography className={classes.head} variant="h1">
-                        Rockets
-                    </Typography>
-                </Grid>
-                {data.data.map((rok) => {
-                    return (
-                        <Grid item xs={6} className={classes.card}>
-                            <Card
-                                key={rok.id}
-                                to={`/rocket/${rok.id}`}
-                                className={classes.single}
-                            >
-                                <CardContent>
-                                    <Carousel>
-                                        {rok.flickr_images.map((img, i) => (
-                                            <CardMedia
-                                                style={{
-                                                    width: "100%",
-                                                    height: 400,
-                                                    objectFit: "cover",
-                                                }}
-                                                image={img}
-                                                alt={rok.name}
-                                            />
-                                        ))}
-                                    </Carousel>
+        <Grid container className={classes.root} direction="row">
+            <Grid item xs={12}>
+                <Typography className={classes.head} variant="h1">
+                    Rockets
+                </Typography>
+            </Grid>
+
+            {data.data.map((rok) => {
+                console.log(rok);
+                return (
+                    <Grid item xs={6} className={classes.card} key={rok.id}>
+                        <Card
+                            key={rok.id}
+                            to={`/rocket/${rok.id}`}
+                            className={classes.single}
+                        >
+                            <CardContent>
+                                <Carousel>
+                                    {rok.flickr_images.map((img, i) => (
+                                        <CardMedia
+                                            key={i}
+                                            style={{
+                                                width: "100%",
+                                                height: 400,
+                                                objectFit: "cover",
+                                            }}
+                                            image={img}
+                                            alt={rok.name}
+                                            onClick={() => {
+                                                history.push(
+                                                    `/rocket/${rok.id}`
+                                                );
+                                            }}
+                                        />
+                                    ))}
+                                </Carousel>
+                                <CardActionArea
+                                    onClick={() => {
+                                        history.push(`/rocket/${rok.id}`);
+                                    }}
+                                >
                                     <Typography
                                         variant="h4"
                                         component="h4"
@@ -92,13 +108,13 @@ const Rockets = () => {
                                     >
                                         {rok.description}
                                     </Typography>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                    );
-                })}
-            </Grid>
-        </Container>
+                                </CardActionArea>
+                            </CardContent>
+                        </Card>
+                    </Grid>
+                );
+            })}
+        </Grid>
     );
 };
 // function Item(props) {

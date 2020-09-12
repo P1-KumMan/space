@@ -7,12 +7,15 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { useQuery } from "react-query";
+import fetch from "../fetch";
 
 const useStyles = makeStyles({
     root: {
         display: "flex",
         backgroundColor: "#212121",
         marginBottom: ".5rem",
+        flexDirection: "row",
     },
     details: {
         display: "flex",
@@ -30,6 +33,12 @@ const useStyles = makeStyles({
 const LatestCard = () => {
     const classes = useStyles();
     const theme = useTheme();
+    const { status, data } = useQuery("news", () =>
+        fetch("https://api.spacexdata.com/v4/launches/latest")
+    );
+    if (status === "loading") return <p>Loading...</p>;
+    if (status === "error") return <p>Error :(</p>;
+    console.info(data);
     return (
         <Card className={classes.root}>
             <CardActionArea className={classes.details}>
@@ -37,15 +46,16 @@ const LatestCard = () => {
                     <Typography variant="h6" component="h6" color="inherit">
                         Latest Launch
                     </Typography>
+                    <Typography variant="h4" component="h4" color="inherit">
+                        {data.data.name}
+                    </Typography>
                     <Typography
                         variant="h4"
                         component="h4"
                         color="inherit"
                     ></Typography>
                     <Typography variant="body2" color="inherit" component="p">
-                        Lizards are a widespread group of squamate reptiles,
-                        with over 6,000 species, ranging across all continents
-                        except Antarctica
+                        {data.data.details}
                     </Typography>
                 </CardContent>
                 <CardMedia

@@ -119,18 +119,10 @@ const Header = () => {
                 </HideOnScroll>
                 <Grid className={classes.main}>
                     <Switch>
-                        <Route path="/" exact>
-                            <Home />
-                        </Route>
-                        <Route path="/starlink">
-                            <Starlink />
-                        </Route>
-                        <Route path="/sat/:id">
-                            <Sat />
-                        </Route>
-                        <Route path="/rockets">
-                            <Rockets />
-                        </Route>
+                        <Route path="/" exact component={Home} />
+                        <Route path="/starlink" component={Starlink} />
+                        <Route path="/sat/:id" component={Sat} />
+                        <Route path="/rockets" component={Rockets} />
                         <Route path="/rocket/:id" component={Rocket} />
                         <Route path="/dragons" component={Dragons} />
                         <Route path="/dragon/:id" component={Dragon} />
