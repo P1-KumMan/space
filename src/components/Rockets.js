@@ -15,6 +15,12 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Carousel from "react-material-ui-carousel";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableRow from "@material-ui/core/TableRow";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
     root: {},
@@ -37,15 +43,23 @@ const useStyles = makeStyles((theme) => ({
     card: {
         padding: theme.spacing(2),
     },
-    single: {
+    single2: {
         backgroundColor: "#212121",
         color: "white",
+    },
+    single: {
+        backgroundColor: "black",
+        color: "white",
+    },
+    so: {
+        margin: ".5rem",
     },
 }));
 
 const Rockets = ({ history }) => {
     const classes = useStyles();
     const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up("md"));
     const { status, data } = useQuery("rockets", () =>
         fetch("https://api.spacexdata.com/v4/rockets")
     );
@@ -63,11 +77,16 @@ const Rockets = ({ history }) => {
             {data.data.map((rok) => {
                 console.log(rok);
                 return (
-                    <Grid item xs={6} className={classes.card} key={rok.id}>
+                    <Grid
+                        item
+                        xs={matches === true ? 6 : 12}
+                        className={classes.card}
+                        key={rok.id}
+                    >
                         <Card
                             key={rok.id}
                             to={`/rocket/${rok.id}`}
-                            className={classes.single}
+                            className={classes.single2}
                         >
                             <CardContent>
                                 <Carousel>
@@ -81,18 +100,19 @@ const Rockets = ({ history }) => {
                                             }}
                                             image={img}
                                             alt={rok.name}
-                                            onClick={() => {
-                                                history.push(
-                                                    `/rocket/${rok.id}`
-                                                );
-                                            }}
+                                            // onClick={() => {
+                                            //     history.push(
+                                            //         `/rocket/${rok.id}`
+                                            //     );
+                                            // }}
                                         />
                                     ))}
                                 </Carousel>
                                 <CardActionArea
-                                    onClick={() => {
-                                        history.push(`/rocket/${rok.id}`);
-                                    }}
+                                    // onClick={() => {
+                                    //     history.push(`/rocket/${rok.id}`);
+                                    // }}
+                                    className={classes.so}
                                 >
                                     <Typography
                                         variant="h4"
@@ -109,6 +129,134 @@ const Rockets = ({ history }) => {
                                         {rok.description}
                                     </Typography>
                                 </CardActionArea>
+                                <TableContainer
+                                    component={Paper}
+                                    color="inherit"
+                                    className={classes.single}
+                                >
+                                    <Table
+                                        backgroundColor="inherit"
+                                        className={classes.single}
+                                    >
+                                        <TableBody color="inherit">
+                                            <TableRow
+                                                className={classes.single}
+                                            >
+                                                <TableCell
+                                                    component="th"
+                                                    scope="row"
+                                                >
+                                                    <Typography
+                                                        variant="body1"
+                                                        color="inherit"
+                                                        className={
+                                                            classes.single
+                                                        }
+                                                    >
+                                                        Height
+                                                    </Typography>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Typography
+                                                        variant="body1"
+                                                        color="inherit"
+                                                        className={
+                                                            classes.single
+                                                        }
+                                                    >
+                                                        {rok.height.meters} m
+                                                    </Typography>
+                                                </TableCell>
+                                            </TableRow>
+                                            <TableRow
+                                                className={classes.tablecell}
+                                            >
+                                                <TableCell
+                                                    component="th"
+                                                    scope="row"
+                                                >
+                                                    <Typography
+                                                        variant="body1"
+                                                        color="inherit"
+                                                        className={
+                                                            classes.single
+                                                        }
+                                                    >
+                                                        Mass
+                                                    </Typography>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Typography
+                                                        variant="body1"
+                                                        color="inherit"
+                                                        className={
+                                                            classes.single
+                                                        }
+                                                    >
+                                                        {rok.mass.kg} kg
+                                                    </Typography>
+                                                </TableCell>
+                                            </TableRow>
+                                            <TableRow
+                                                className={classes.single}
+                                            >
+                                                <TableCell
+                                                    component="th"
+                                                    scope="row"
+                                                >
+                                                    {rok.active === true ? (
+                                                        <Typography
+                                                            variant="body1"
+                                                            color="inherit"
+                                                            className={
+                                                                classes.single
+                                                            }
+                                                        >
+                                                            Active
+                                                        </Typography>
+                                                    ) : (
+                                                        <Typography
+                                                            variant="body1"
+                                                            color="inherit"
+                                                            className={
+                                                                classes.single
+                                                            }
+                                                        >
+                                                            Not Active
+                                                        </Typography>
+                                                    )}
+                                                </TableCell>
+                                                <TableCell
+                                                    component="th"
+                                                    scope="row"
+                                                >
+                                                    {rok.first_stage
+                                                        .reusable === true ? (
+                                                        <Typography
+                                                            variant="body1"
+                                                            color="inherit"
+                                                            className={
+                                                                classes.single
+                                                            }
+                                                        >
+                                                            Reusable
+                                                        </Typography>
+                                                    ) : (
+                                                        <Typography
+                                                            variant="body1"
+                                                            color="inherit"
+                                                            className={
+                                                                classes.single
+                                                            }
+                                                        >
+                                                            Not Reusable
+                                                        </Typography>
+                                                    )}
+                                                </TableCell>
+                                            </TableRow>
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
                             </CardContent>
                         </Card>
                     </Grid>
@@ -117,13 +265,5 @@ const Rockets = ({ history }) => {
         </Grid>
     );
 };
-// function Item(props) {
-//     return (
-//         <Paper>
-//             <img src={props.img} alt="ll" />
-//             <Button className="CheckButton">Check it out!</Button>
-//         </Paper>
-//     );
-// }
 
 export default Rockets;

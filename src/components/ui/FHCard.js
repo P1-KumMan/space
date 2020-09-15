@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import { useQuery } from "react-query";
 import fetch from "../fetch";
 import { withRouter } from "react-router-dom";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles({
     root: {
@@ -17,7 +18,6 @@ const useStyles = makeStyles({
     },
     details: {
         display: "flex",
-        flexDirection: "row",
     },
     media: {
         width: "100%",
@@ -31,6 +31,7 @@ const useStyles = makeStyles({
 const FHCard = withRouter(({ history }) => {
     const classes = useStyles();
     const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up("md"));
     const { status, data } = useQuery("data", () =>
         fetch("https://api.spacexdata.com/v4/rockets/5e9d0d95eda69974db09d1ed")
     );
@@ -38,7 +39,14 @@ const FHCard = withRouter(({ history }) => {
     if (status === "error") return <p>Error :(</p>;
     // console.info(data);
     return (
-        <Card className={classes.root}>
+        <Card
+            className={classes.root}
+            style={
+                matches === true
+                    ? { flexDirection: "row" }
+                    : { flexDirection: "column-reverse" }
+            }
+        >
             <CardActionArea
                 className={classes.details}
                 onClick={() => {
@@ -53,12 +61,12 @@ const FHCard = withRouter(({ history }) => {
                         {data.data.description}
                     </Typography>
                 </CardContent>
-                <CardMedia
-                    className={classes.media}
-                    image="https://www.spacex.com/static/images/falcon-heavy/FH_1.webp"
-                    title="Falcon Heavy"
-                />
             </CardActionArea>
+            <CardMedia
+                className={classes.media}
+                image="https://www.spacex.com/static/images/falcon-heavy/FH_1.webp"
+                title="Falcon Heavy"
+            />
         </Card>
     );
 });

@@ -9,17 +9,17 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useQuery } from "react-query";
 import fetch from "../fetch";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles({
     root: {
         display: "flex",
         backgroundColor: "#212121",
         marginBottom: ".5rem",
-        flexDirection: "row",
+        // flexDirection: "row",
     },
     details: {
         display: "flex",
-        flexDirection: "row",
     },
     media: {
         width: "100%",
@@ -33,6 +33,7 @@ const useStyles = makeStyles({
 const LatestCard = () => {
     const classes = useStyles();
     const theme = useTheme();
+    const matches = useMediaQuery(theme.breakpoints.up("md"));
     const { status, data } = useQuery("news", () =>
         fetch("https://api.spacexdata.com/v4/launches/latest")
     );
@@ -40,7 +41,14 @@ const LatestCard = () => {
     if (status === "error") return <p>Error :(</p>;
     console.info(data);
     return (
-        <Card className={classes.root}>
+        <Card
+            className={classes.root}
+            style={
+                matches === true
+                    ? { flexDirection: "row" }
+                    : { flexDirection: "column-reverse" }
+            }
+        >
             <CardActionArea className={classes.details}>
                 <CardContent className={classes.cont}>
                     <Typography variant="h6" component="h6" color="inherit">
@@ -58,12 +66,12 @@ const LatestCard = () => {
                         {data.data.details}
                     </Typography>
                 </CardContent>
-                <CardMedia
-                    className={classes.media}
-                    image="https://www.spacex.com/static/images/falcon-9/F9_3.webp"
-                    title="Orbital Rocket Booster"
-                />
             </CardActionArea>
+            <CardMedia
+                className={classes.media}
+                image="https://www.spacex.com/static/images/falcon-9/F9_3.webp"
+                title="Orbital Rocket Booster"
+            />
         </Card>
     );
 };

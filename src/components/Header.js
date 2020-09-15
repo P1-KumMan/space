@@ -23,16 +23,17 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         margin: 0,
-        padding: 0,
+        padding: ".5rem",
         color: "white",
         backgroundColor: "black",
     },
     menuButton: {
-        marginRight: theme.spacing(0),
+        marginRight: theme.spacing(2),
         color: "i",
     },
     title: {
         flexGrow: 1,
+        display: "flex",
     },
     app: {
         margin: 0,
