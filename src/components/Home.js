@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
         backgroundColor: "black",
-        maxWidth: "sm",
+        maxWidth: "md",
         margin: 10,
     },
 }));

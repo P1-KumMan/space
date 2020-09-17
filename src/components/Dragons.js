@@ -32,7 +32,8 @@ const useStyles = makeStyles((theme) => ({
     },
     head: {
         color: "white",
-        component: "h3",
+        textAlign: "center",
+        fontFamily: "D-DIN-Bold, Arial, Verdana, sans-serif",
     },
     card: {
         display: "flex",
@@ -43,9 +44,7 @@ const useStyles = makeStyles((theme) => ({
     single: {
         backgroundColor: "black",
         color: "white",
-    },
-    so: {
-        margin: ".5rem",
+        marginTop: ".5rem",
     },
 }));
 
@@ -64,7 +63,7 @@ const Dragons = ({ history }) => {
             <Grid container className={classes.root} direction="row">
                 <Grid item xs={12}>
                     <Typography className={classes.head} variant="h1">
-                        Dragons
+                        DRAGONS
                     </Typography>
                 </Grid>
                 {data.data.map((dragon) => {
@@ -91,37 +90,23 @@ const Dragons = ({ history }) => {
                                                 }}
                                                 image={img}
                                                 alt={dragon.name}
-                                                // onClick={() => {
-                                                //     history.push(
-                                                //         `/dragon/${dragon.id}`
-                                                //     );
-                                                // }}
                                             />
                                         ))}
                                     </Carousel>
-                                    <CardActionArea
-                                        // onClick={() => {
-                                        //     history.push(
-                                        //         `/dragon/${dragon.id}`
-                                        //     );
-                                        // }}
-                                        className={classes.so}
+                                    <Typography
+                                        variant="h4"
+                                        component="h4"
+                                        color="inherit"
                                     >
-                                        <Typography
-                                            variant="h4"
-                                            component="h4"
-                                            color="inherit"
-                                        >
-                                            {dragon.name}
-                                        </Typography>
-                                        <Typography
-                                            variant="body2"
-                                            color="inherit"
-                                            component="p"
-                                        >
-                                            {dragon.description}
-                                        </Typography>
-                                    </CardActionArea>
+                                        {dragon.name}
+                                    </Typography>
+                                    <Typography
+                                        variant="body2"
+                                        color="inherit"
+                                        component="p"
+                                    >
+                                        {dragon.description}
+                                    </Typography>
                                     <TableContainer
                                         component={Paper}
                                         color="inherit"

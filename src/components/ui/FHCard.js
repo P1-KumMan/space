@@ -16,9 +16,6 @@ const useStyles = makeStyles({
         backgroundColor: "#212121",
         marginBottom: ".5rem",
     },
-    details: {
-        display: "flex",
-    },
     media: {
         width: "100%",
         height: 400,
@@ -47,10 +44,11 @@ const FHCard = withRouter(({ history }) => {
                     : { flexDirection: "column-reverse" }
             }
         >
-            <CardActionArea
-                className={classes.details}
-                onClick={() => {
-                    history.push(`/rocket/${data.data.id}`);
+            <div
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                 }}
             >
                 <CardContent className={classes.cont}>
@@ -61,12 +59,13 @@ const FHCard = withRouter(({ history }) => {
                         {data.data.description}
                     </Typography>
                 </CardContent>
-            </CardActionArea>
-            <CardMedia
-                className={classes.media}
-                image="https://www.spacex.com/static/images/falcon-heavy/FH_1.webp"
-                title="Falcon Heavy"
-            />
+
+                <CardMedia
+                    className={classes.media}
+                    image="https://www.spacex.com/static/images/falcon-heavy/FH_1.webp"
+                    title="Falcon Heavy"
+                />
+            </div>
         </Card>
     );
 });

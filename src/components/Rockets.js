@@ -21,6 +21,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import SvgIcon from "@material-ui/core/SvgIcon";
 
 const useStyles = makeStyles((theme) => ({
     root: {},
@@ -39,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
     head: {
         color: "white",
         component: "h3",
+        textAlign: "center",
     },
     card: {
         padding: theme.spacing(2),
@@ -50,9 +52,8 @@ const useStyles = makeStyles((theme) => ({
     single: {
         backgroundColor: "black",
         color: "white",
-    },
-    so: {
-        margin: ".5rem",
+        fontFamily: "D-DIN-Bold, Arial, Verdana, sans-serif",
+        marginTop: ".5rem",
     },
 }));
 
@@ -70,7 +71,7 @@ const Rockets = ({ history }) => {
         <Grid container className={classes.root} direction="row">
             <Grid item xs={12}>
                 <Typography className={classes.head} variant="h1">
-                    Rockets
+                    ROCKETS
                 </Typography>
             </Grid>
 
@@ -100,35 +101,23 @@ const Rockets = ({ history }) => {
                                             }}
                                             image={img}
                                             alt={rok.name}
-                                            // onClick={() => {
-                                            //     history.push(
-                                            //         `/rocket/${rok.id}`
-                                            //     );
-                                            // }}
                                         />
                                     ))}
                                 </Carousel>
-                                <CardActionArea
-                                    // onClick={() => {
-                                    //     history.push(`/rocket/${rok.id}`);
-                                    // }}
-                                    className={classes.so}
+                                <Typography
+                                    variant="h4"
+                                    component="h4"
+                                    color="inherit"
                                 >
-                                    <Typography
-                                        variant="h4"
-                                        component="h4"
-                                        color="inherit"
-                                    >
-                                        {rok.name}
-                                    </Typography>
-                                    <Typography
-                                        variant="body2"
-                                        color="inherit"
-                                        component="p"
-                                    >
-                                        {rok.description}
-                                    </Typography>
-                                </CardActionArea>
+                                    {rok.name}
+                                </Typography>
+                                <Typography
+                                    variant="body2"
+                                    color="inherit"
+                                    component="p"
+                                >
+                                    {rok.description}
+                                </Typography>
                                 <TableContainer
                                     component={Paper}
                                     color="inherit"

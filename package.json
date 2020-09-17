@@ -17,7 +17,8 @@
     "react-query": "^2.5.14",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "react-swipeable-views": "^0.13.9"
+    "react-swipeable-views": "^0.13.9",
+    "typeface-d-din": "^0.0.67"
   },
   "scripts": {
     "start": "react-scripts start",

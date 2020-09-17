@@ -18,9 +18,6 @@ const useStyles = makeStyles({
         backgroundColor: "#212121",
         marginBottom: ".5rem",
     },
-    details: {
-        display: "flex",
-    },
     media: {
         width: "100%",
         height: "400px",
@@ -28,6 +25,7 @@ const useStyles = makeStyles({
     },
     cont: {
         color: "white",
+        // display: "flex",
     },
 });
 const F9Card = withRouter(({ history }) => {
@@ -54,7 +52,13 @@ const F9Card = withRouter(({ history }) => {
                 image="https://www.spacex.com/static/images/falcon-9/F9_7.webp"
                 title="Falcon 9"
             />
-            <CardActionArea className={classes.details}>
+            <div
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
+            >
                 <CardContent className={classes.cont}>
                     <Typography variant="h4" component="h4" color="inherit">
                         {data.data.name}
@@ -63,7 +67,7 @@ const F9Card = withRouter(({ history }) => {
                         {data.data.description}
                     </Typography>
                 </CardContent>
-            </CardActionArea>
+            </div>
         </Card>
     );
 });

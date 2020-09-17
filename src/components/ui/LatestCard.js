@@ -18,9 +18,6 @@ const useStyles = makeStyles({
         marginBottom: ".5rem",
         // flexDirection: "row",
     },
-    details: {
-        display: "flex",
-    },
     media: {
         width: "100%",
         height: "400px",
@@ -30,7 +27,7 @@ const useStyles = makeStyles({
         color: "white",
     },
 });
-const LatestCard = () => {
+const LatestCard = ({ history }) => {
     const classes = useStyles();
     const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up("md"));
@@ -49,7 +46,13 @@ const LatestCard = () => {
                     : { flexDirection: "column-reverse" }
             }
         >
-            <CardActionArea className={classes.details}>
+            <div
+                style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
+            >
                 <CardContent className={classes.cont}>
                     <Typography variant="h6" component="h6" color="inherit">
                         Latest Launch
@@ -66,12 +69,12 @@ const LatestCard = () => {
                         {data.data.details}
                     </Typography>
                 </CardContent>
-            </CardActionArea>
-            <CardMedia
-                className={classes.media}
-                image="https://www.spacex.com/static/images/falcon-9/F9_3.webp"
-                title="Orbital Rocket Booster"
-            />
+                <CardMedia
+                    className={classes.media}
+                    image="https://www.spacex.com/static/images/falcon-9/F9_3.webp"
+                    title="Orbital Rocket Booster"
+                />
+            </div>
         </Card>
     );
 };
