@@ -30,7 +30,7 @@ const Starlink = () => {
     const l = data.data.length;
     return (
         <Grid>
-            <Typography variant="h1" className={classes.head}>
+            <Typography variant="h2" className={classes.head}>
                 STARLINK
             </Typography>
             <img

@@ -60,7 +60,7 @@ const Dragons = ({ history }) => {
         return (
             <Grid container className={classes.root} direction="row">
                 <Grid item xs={12}>
-                    <Typography className={classes.head} variant="h1">
+                    <Typography className={classes.head} variant="h2">
                         DRAGONS
                     </Typography>
                 </Grid>

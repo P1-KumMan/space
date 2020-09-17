@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
         color: "white",
         textAlign: "center",
         justifyContent: "center",
-        paddingRight: "3rem",
     },
     card: {
         padding: theme.spacing(2),
@@ -62,7 +61,7 @@ const Rockets = ({ history }) => {
     return (
         <Grid container className={classes.root} direction="row">
             <Grid item xs={12}>
-                <Typography className={classes.head} variant="h1">
+                <Typography className={classes.head} variant="h2">
                     ROCKETS
                 </Typography>
             </Grid>
