@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useQuery } from "react-query";
 import fetch from "./fetch";
-import { Link } from "react-router-dom";
-import { Grid, Container, CardActionArea, Paper } from "@material-ui/core";
+import { Grid, Paper } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -57,7 +56,6 @@ const Dragons = ({ history }) => {
     );
     if (status === "loading") return <p>Loading...</p>;
     if (status === "error") return <p>Error :(</p>;
-    console.log(data.name);
     if (status === "success")
         return (
             <Grid container className={classes.root} direction="row">
@@ -67,7 +65,6 @@ const Dragons = ({ history }) => {
                     </Typography>
                 </Grid>
                 {data.data.map((dragon) => {
-                    console.log(dragon);
                     return (
                         <Grid
                             item

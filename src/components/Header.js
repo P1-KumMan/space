@@ -4,10 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import { BrowserRouter } from "react-router-dom";
 import Home from "./Home";
 import Starlink from "./Starlink";
-import Sat from "./Sat";
 import Rockets from "./Rockets";
-import Rocket from "./Rocket";
-import Dragon from "./Dragon";
 import Dragons from "./Dragons";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -18,7 +15,6 @@ import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Slide from "@material-ui/core/Slide";
-import { Height } from "@material-ui/icons";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -224,11 +220,8 @@ const Header = () => {
                     <Switch>
                         <Route path="/" exact component={Home} />
                         <Route path="/starlink" component={Starlink} />
-                        <Route path="/sat/:id" component={Sat} />
                         <Route path="/rockets" component={Rockets} />
-                        <Route path="/rocket/:id" component={Rocket} />
                         <Route path="/dragons" component={Dragons} />
-                        <Route path="/dragon/:id" component={Dragon} />
                     </Switch>
                 </Grid>
             </Container>

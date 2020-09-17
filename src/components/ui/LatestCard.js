@@ -3,9 +3,6 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useQuery } from "react-query";
 import fetch from "../fetch";
@@ -36,7 +33,6 @@ const LatestCard = ({ history }) => {
     );
     if (status === "loading") return <p>Loading...</p>;
     if (status === "error") return <p>Error :(</p>;
-    console.info(data);
     return (
         <Card
             className={classes.root}
@@ -69,12 +65,12 @@ const LatestCard = ({ history }) => {
                         {data.data.details}
                     </Typography>
                 </CardContent>
-                <CardMedia
-                    className={classes.media}
-                    image="https://www.spacex.com/static/images/falcon-9/F9_3.webp"
-                    title="Orbital Rocket Booster"
-                />
             </div>
+            <CardMedia
+                className={classes.media}
+                image="https://www.spacex.com/static/images/falcon-9/F9_3.webp"
+                title="Orbital Rocket Booster"
+            />
         </Card>
     );
 };

@@ -1,14 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useQuery } from "react-query";
 import { makeStyles } from "@material-ui/core/styles";
 import fetch from "./fetch";
-import { CardMedia, Typography } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
+import { Typography } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
-import Sat from "./Sat";
 
 const useStyles = makeStyles({
     root: {
@@ -32,9 +27,7 @@ const Starlink = () => {
     );
     if (status === "loading") return <p>Loading...</p>;
     if (status === "error") return <p>Error :(</p>;
-    console.log(data);
     const l = data.data.length;
-    console.log(l);
     return (
         <Grid>
             <Typography variant="h1" className={classes.head}>

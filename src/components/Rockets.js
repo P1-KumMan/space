@@ -1,14 +1,7 @@
 import React from "react";
 import { useQuery } from "react-query";
 import fetch from "./fetch";
-import { Link } from "react-router-dom";
-import {
-    Grid,
-    Paper,
-    Button,
-    Container,
-    CardActionArea,
-} from "@material-ui/core";
+import { Grid, Paper } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -21,7 +14,6 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import SvgIcon from "@material-ui/core/SvgIcon";
 
 const useStyles = makeStyles((theme) => ({
     root: {},
@@ -39,8 +31,9 @@ const useStyles = makeStyles((theme) => ({
     },
     head: {
         color: "white",
-        component: "h3",
         textAlign: "center",
+        justifyContent: "center",
+        paddingRight: "3rem",
     },
     card: {
         padding: theme.spacing(2),
@@ -66,7 +59,6 @@ const Rockets = ({ history }) => {
     );
     if (status === "loading") return <p>Loading...</p>;
     if (status === "error") return <p>Error :(</p>; // console.info(data);
-    if (status === "success") console.log(data);
     return (
         <Grid container className={classes.root} direction="row">
             <Grid item xs={12}>
@@ -74,9 +66,7 @@ const Rockets = ({ history }) => {
                     ROCKETS
                 </Typography>
             </Grid>
-
             {data.data.map((rok) => {
-                console.log(rok);
                 return (
                     <Grid
                         item
