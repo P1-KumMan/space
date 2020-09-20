@@ -18,6 +18,7 @@ import Slide from "@material-ui/core/Slide";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import "fontsource-oswald";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,6 +31,8 @@ const useStyles = makeStyles((theme) => ({
     menuButton: {
         marginRight: theme.spacing(2),
         color: "i",
+        fontFamily: "oswald",
+        fontWeight: "300",
     },
     title: {
         flexGrow: 1,
@@ -46,9 +49,10 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "black",
     },
 
-    Button: { font: "D-DIN-Regular", fontWeight: "400" },
+    // Button: { font: "roboto", fontWeight: "100" },
     linkk: {
         color: "white",
+        fontDecarations: "none",
     },
 }));
 function HideOnScroll(props) {
@@ -106,9 +110,10 @@ const Header = () => {
                                         color="inherit"
                                         component={Rlink}
                                         to="/dragons"
+                                        className={classes.linkk}
                                     >
                                         <Button color="inherit">
-                                            <Typography font="D-DIN-Regular">
+                                            <Typography variant="body2">
                                                 Dragon
                                             </Typography>
                                         </Button>
@@ -121,7 +126,10 @@ const Header = () => {
                                         to="/rockets"
                                     >
                                         <Button color="inherit">
-                                            <Typography font="D-DIN-Regular">
+                                            <Typography
+                                                font="D-DIN-Regular"
+                                                variant="body2"
+                                            >
                                                 Rockets
                                             </Typography>
                                         </Button>
@@ -134,7 +142,10 @@ const Header = () => {
                                         to="/starlink"
                                     >
                                         <Button color="inherit">
-                                            <Typography font="D-DIN-Regular">
+                                            <Typography
+                                                font="D-DIN-Regular"
+                                                variant="body2"
+                                            >
                                                 Starlink
                                             </Typography>
                                         </Button>

@@ -9,6 +9,9 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
+    "fontsource-abel": "^3.0.9",
+    "fontsource-antic-slab": "^3.0.9",
+    "fontsource-oswald": "^3.0.3",
     "fontsource-roboto": "^3.0.3",
     "loadash": "^1.0.0",
     "react": "^16.13.1",
@@ -16,7 +19,7 @@
     "react-material-ui-carousel": "^1.8.3",
     "react-query": "^2.5.14",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.3",
     "react-swipeable-views": "^0.13.9",
     "typeface-d-din": "^0.0.67"
   },

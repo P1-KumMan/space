@@ -14,6 +14,9 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import "fontsource-oswald";
+import "fontsource-antic-slab";
+import "fontsource-abel";
 
 const useStyles = makeStyles((theme) => ({
     root: {},
@@ -32,18 +35,26 @@ const useStyles = makeStyles((theme) => ({
     head: {
         color: "white",
         textAlign: "center",
-        fontFamily: "D-DIN-Bold, Arial, Verdana, sans-serif",
+        fontFamily: "oswald, Arial, Verdana, sans-serif",
+        fontWeight: "550",
+        margin: "1.5rem",
     },
     card: {
         display: "flex",
         flexDirection: "row",
         padding: theme.spacing(2),
     },
-    single2: { backgroundColor: "#212121", color: "white" },
+    single2: {
+        backgroundColor: "#212121",
+        color: "white",
+        fontFamily: "antic-slab, Arial, Verdana, sans-serif",
+        fontWeight: "500",
+    },
     single: {
         backgroundColor: "black",
         color: "white",
         marginTop: ".5rem",
+        fontFamily: "abel, Arial, Verdana, sans-serif",
     },
 }));
 
@@ -94,6 +105,7 @@ const Dragons = ({ history }) => {
                                         variant="h4"
                                         component="h4"
                                         color="inherit"
+                                        className={classes.single2}
                                     >
                                         {dragon.name}
                                     </Typography>

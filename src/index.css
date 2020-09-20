@@ -1,7 +1,0 @@
-@font-face {
-    font-family: "D-DIN-Bold";
-    src: local("D-DIN-Bold"), url ("./fonts/'D-DIN-Bold.otf") format("truetype");
-}
-body {
-    font-family: "D-DIN-Bold";
-}

@@ -8,6 +8,9 @@ import { useQuery } from "react-query";
 import fetch from "../fetch";
 import { withRouter } from "react-router-dom";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import "fontsource-oswald";
+import "fontsource-antic-slab";
+import "fontsource-abel";
 
 const useStyles = makeStyles({
     root: {
@@ -22,6 +25,12 @@ const useStyles = makeStyles({
     },
     cont: {
         color: "white",
+    },
+    head: {
+        fontFamily: "oswald, Arial, Verdana, sans-serif",
+    },
+    datades: {
+        fontFamily: "abels, Arial, Verdana, sans-serif",
     },
 });
 const FHCard = withRouter(({ history }) => {
@@ -51,10 +60,20 @@ const FHCard = withRouter(({ history }) => {
                 }}
             >
                 <CardContent className={classes.cont}>
-                    <Typography variant="h4" component="h4" color="inherit">
+                    <Typography
+                        variant="h4"
+                        component="h4"
+                        color="inherit"
+                        className={classes.head}
+                    >
                         {data.data.name}
                     </Typography>
-                    <Typography variant="body2" color="inherit" component="p">
+                    <Typography
+                        variant="body2"
+                        color="inherit"
+                        component="p"
+                        className={classes.datades}
+                    >
                         {data.data.description}
                     </Typography>
                 </CardContent>

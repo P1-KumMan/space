@@ -7,6 +7,9 @@ import Typography from "@material-ui/core/Typography";
 import { useQuery } from "react-query";
 import fetch from "../fetch";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import "fontsource-oswald";
+import "fontsource-antic-slab";
+import "fontsource-abel";
 
 const useStyles = makeStyles({
     root: {
@@ -22,6 +25,12 @@ const useStyles = makeStyles({
     },
     cont: {
         color: "white",
+    },
+    head: {
+        fontFamily: "oswald, Arial, Verdana, sans-serif",
+    },
+    datades: {
+        fontFamily: "abels, Arial, Verdana, sans-serif",
     },
 });
 const LatestCard = ({ history }) => {
@@ -53,7 +62,12 @@ const LatestCard = ({ history }) => {
                     <Typography variant="h6" component="h6" color="inherit">
                         Latest Launch
                     </Typography>
-                    <Typography variant="h4" component="h4" color="inherit">
+                    <Typography
+                        variant="h4"
+                        component="h4"
+                        color="inherit"
+                        className={classes.head}
+                    >
                         {data.data.name}
                     </Typography>
                     <Typography
@@ -61,7 +75,12 @@ const LatestCard = ({ history }) => {
                         component="h4"
                         color="inherit"
                     ></Typography>
-                    <Typography variant="body2" color="inherit" component="p">
+                    <Typography
+                        variant="body2"
+                        color="inherit"
+                        component="p"
+                        className={classes.datades}
+                    >
                         {data.data.details}
                     </Typography>
                 </CardContent>

@@ -14,6 +14,9 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import "fontsource-oswald";
+import "fontsource-antic-slab";
+import "fontsource-abel";
 
 const useStyles = makeStyles((theme) => ({
     root: {},
@@ -33,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
         color: "white",
         textAlign: "center",
         justifyContent: "center",
+        fontFamily: "oswald, Arial, Verdana, sans-serif",
+        fontWeight: "550",
+        margin: "1.5rem",
     },
     card: {
         padding: theme.spacing(2),
@@ -40,12 +46,15 @@ const useStyles = makeStyles((theme) => ({
     single2: {
         backgroundColor: "#212121",
         color: "white",
+
+        fontFamily: "antic-slab, Arial, Verdana, sans-serif",
+        fontWeight: "200",
     },
     single: {
         backgroundColor: "black",
         color: "white",
-        fontFamily: "D-DIN-Bold, Arial, Verdana, sans-serif",
-        marginTop: ".5rem",
+        fontFamily: "abel, Arial, Verdana, sans-serif",
+        fontWeight: "500",
     },
 }));
 
@@ -97,6 +106,7 @@ const Rockets = ({ history }) => {
                                     variant="h4"
                                     component="h4"
                                     color="inherit"
+                                    className={classes.single2}
                                 >
                                     {rok.name}
                                 </Typography>
@@ -104,6 +114,7 @@ const Rockets = ({ history }) => {
                                     variant="body2"
                                     color="inherit"
                                     component="p"
+                                    className={classes.single2}
                                 >
                                     {rok.description}
                                 </Typography>
