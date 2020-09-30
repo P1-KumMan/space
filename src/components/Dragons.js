@@ -14,9 +14,6 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import "fontsource-oswald";
-import "fontsource-antic-slab";
-import "fontsource-abel";
 
 const useStyles = makeStyles((theme) => ({
     root: {},

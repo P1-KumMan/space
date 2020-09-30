@@ -8,9 +8,6 @@ import { useQuery } from "react-query";
 import fetch from "../fetch";
 import { withRouter } from "react-router-dom";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import "fontsource-oswald";
-import "fontsource-antic-slab";
-import "fontsource-abel";
 
 const useStyles = makeStyles({
     root: {

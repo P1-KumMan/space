@@ -4,9 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import fetch from "./fetch";
 import { Typography } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
-import "fontsource-oswald";
-import "fontsource-antic-slab";
-import "fontsource-abel";
 
 const useStyles = makeStyles((theme) => ({
     root: {

@@ -18,7 +18,6 @@ import Slide from "@material-ui/core/Slide";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import "fontsource-oswald";
 
 const useStyles = makeStyles((theme) => ({
     root: {

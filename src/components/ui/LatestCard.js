@@ -7,9 +7,6 @@ import Typography from "@material-ui/core/Typography";
 import { useQuery } from "react-query";
 import fetch from "../fetch";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import "fontsource-oswald";
-import "fontsource-antic-slab";
-import "fontsource-abel";
 
 const useStyles = makeStyles({
     root: {
