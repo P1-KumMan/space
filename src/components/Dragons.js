@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     details: {
         display: "flex",
         flexDirection: "row",
+        minHeight: "100vh",
     },
     media: {
         width: "100%",

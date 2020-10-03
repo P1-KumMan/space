@@ -14,6 +14,7 @@ const useStyles = makeStyles({
         display: "flex",
         backgroundColor: "#212121",
         marginBottom: ".5rem",
+        minHeight: "100vh",
     },
     media: {
         width: "100%",

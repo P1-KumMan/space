@@ -8,11 +8,12 @@ import { useQuery } from "react-query";
 import fetch from "../fetch";
 import { withRouter } from "react-router-dom";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import theme from "../../theme";
 
 const useStyles = makeStyles({
     root: {
         display: "flex",
-        backgroundColor: "#212121",
+        // backgroundColor: "#212121",
         marginBottom: ".5rem",
     },
     media: {
@@ -25,15 +26,15 @@ const useStyles = makeStyles({
         // display: "flex",
     },
     head: {
-        fontFamily: "oswald, Arial, Verdana, sans-serif",
+        fontFamily: "D-DIN-Bold, Arial, Verdana, sans-serif",
     },
     datades: {
-        fontFamily: "abels, Arial, Verdana, sans-serif",
+        fontFamily: "D-DIN, Arial, Verdana, sans-serif",
     },
 });
 const F9Card = withRouter(({ history }) => {
     const classes = useStyles();
-    const theme = useTheme();
+    // const theme = useTheme();
     const matches = useMediaQuery(theme.breakpoints.up("md"));
     const { status, data } = useQuery("f9", () =>
         fetch("https://api.spacexdata.com/v4/rockets/5e9d0d95eda69973a809d1ec")

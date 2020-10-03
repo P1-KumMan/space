@@ -14,7 +14,8 @@
 }
 
 .App-header {
-    background-color: #282c34;
+    background-color: #000000;
+    background: "https://farm5.staticflickr.com/4645/38583830575_3f0f7215e6_b.jpg";
     min-height: 100vh;
     display: flex;
     flex-direction: column;
