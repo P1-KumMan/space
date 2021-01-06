@@ -13,7 +13,6 @@ import theme from "../../theme";
 const useStyles = makeStyles({
     root: {
         display: "flex",
-        // backgroundColor: "#212121",
         marginBottom: ".5rem",
     },
     media: {
@@ -23,7 +22,6 @@ const useStyles = makeStyles({
     },
     cont: {
         color: "white",
-        // display: "flex",
     },
     head: {
         fontFamily: "D-DIN-Bold, Arial, Verdana, sans-serif",

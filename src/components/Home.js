@@ -4,6 +4,7 @@ import { Grid } from "@material-ui/core";
 import LatestCard from "./ui/LatestCard.js";
 import F9Card from "./ui/F9Card";
 import FHCard from "./ui/FHCard";
+import { HeroCards } from "./ui/HeroCards.js";
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -24,6 +25,9 @@ export default function Home() {
             </Grid>
             <Grid item xs={12}>
                 <FHCard />
+            </Grid>
+            <Grid item xs={12}>
+                <HeroCards />
             </Grid>
         </Grid>
     );
