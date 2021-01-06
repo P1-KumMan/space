@@ -16,237 +16,186 @@ import TableRow from "@material-ui/core/TableRow";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles((theme) => ({
-    root: {},
-    details: {
-        display: "flex",
-        flexDirection: "row",
-        minHeight: "100vh",
-    },
-    media: {
-        width: "100%",
-        height: "500px",
-        objectFit: "contain",
-    },
-    cont: {
-        color: "white",
-    },
-    head: {
-        color: "white",
-        textAlign: "center",
-        fontFamily: "oswald, Arial, Verdana, sans-serif",
-        fontWeight: "550",
-        margin: "1.5rem",
-    },
-    card: {
-        display: "flex",
-        flexDirection: "row",
-        padding: theme.spacing(2),
-    },
-    single2: {
-        backgroundColor: "#212121",
-        color: "white",
-        fontFamily: "antic-slab, Arial, Verdana, sans-serif",
-        fontWeight: "500",
-    },
-    single: {
-        backgroundColor: "black",
-        color: "white",
-        marginTop: ".5rem",
-        fontFamily: "abel, Arial, Verdana, sans-serif",
-    },
+  root: {},
+  details: {
+    display: "flex",
+    flexDirection: "row",
+    minHeight: "100vh",
+  },
+  media: {
+    width: "100%",
+    height: "500px",
+    objectFit: "contain",
+  },
+  cont: {
+    color: "white",
+  },
+  head: {
+    color: "white",
+    textAlign: "center",
+    fontFamily: "oswald, Arial, Verdana, sans-serif",
+    fontWeight: "550",
+    margin: "1.5rem",
+  },
+  card: {
+    display: "flex",
+    flexDirection: "row",
+    padding: theme.spacing(2),
+  },
+  single2: {
+    backgroundColor: "#212121",
+    color: "white",
+    fontFamily: "antic-slab, Arial, Verdana, sans-serif",
+    fontWeight: "500",
+  },
+  single: {
+    backgroundColor: "black",
+    color: "white",
+    marginTop: ".5rem",
+    fontFamily: "abel, Arial, Verdana, sans-serif",
+  },
 }));
 
 const Dragons = ({ history }) => {
-    const classes = useStyles();
-    const theme = useTheme();
-    const matches = useMediaQuery(theme.breakpoints.up("md"));
-    const { status, data } = useQuery("dragons", () =>
-        fetch("https://api.spacexdata.com/v4/dragons")
-    );
-    if (status === "loading") return <p>Loading...</p>;
-    if (status === "error") return <p>Error :(</p>;
-    if (status === "success")
-        return (
-            <Grid container className={classes.root} direction="row">
-                <Grid item xs={12}>
-                    <Typography className={classes.head} variant="h2">
-                        DRAGONS
-                    </Typography>
-                </Grid>
-                {data.data.map((dragon) => {
-                    return (
-                        <Grid
-                            item
-                            xs={matches === true ? 6 : 12}
-                            className={classes.card}
-                        >
-                            <Card
-                                key={dragon.id}
-                                to={`/rocket/${dragon.id}`}
-                                className={classes.single2}
+  const classes = useStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up("md"));
+  const { status, data } = useQuery("dragons", () =>
+    fetch("https://api.spacexdata.com/v4/dragons")
+  );
+  if (status === "loading") return <p>Loading...</p>;
+  if (status === "error") return <p>Error :(</p>;
+  if (status === "success")
+    return (
+      <Grid container className={classes.root} direction="row">
+        <Grid item xs={12}>
+          <Typography className={classes.head} variant="h2">
+            DRAGONS
+          </Typography>
+        </Grid>
+        {data.data.map((dragon) => {
+          return (
+            <Grid item xs={matches === true ? 6 : 12} className={classes.card}>
+              <Card
+                key={dragon.id}
+                to={`/rocket/${dragon.id}`}
+                className={classes.single2}
+              >
+                <CardContent>
+                  <Carousel>
+                    {dragon.flickr_images.map((img, i) => (
+                      <CardMedia
+                        style={{
+                          width: "100%",
+                          height: 300,
+                          objectFit: "cover",
+                        }}
+                        image={img}
+                        alt={dragon.name}
+                      />
+                    ))}
+                  </Carousel>
+                  <Typography
+                    variant="h4"
+                    component="h4"
+                    color="inherit"
+                    className={classes.single2}
+                  >
+                    {dragon.name}
+                  </Typography>
+                  <Typography variant="body2" color="inherit" component="p">
+                    {dragon.description}
+                  </Typography>
+                  <TableContainer
+                    component={Paper}
+                    color="inherit"
+                    className={classes.single}
+                  >
+                    <Table backgroundColor="inherit" className={classes.single}>
+                      <TableBody color="inherit">
+                        <TableRow className={classes.single}>
+                          <TableCell component="th" scope="row">
+                            <Typography
+                              variant="body1"
+                              color="inherit"
+                              className={classes.single}
                             >
-                                <CardContent>
-                                    <Carousel>
-                                        {dragon.flickr_images.map((img, i) => (
-                                            <CardMedia
-                                                style={{
-                                                    width: "100%",
-                                                    height: 300,
-                                                    objectFit: "cover",
-                                                }}
-                                                image={img}
-                                                alt={dragon.name}
-                                            />
-                                        ))}
-                                    </Carousel>
-                                    <Typography
-                                        variant="h4"
-                                        component="h4"
-                                        color="inherit"
-                                        className={classes.single2}
-                                    >
-                                        {dragon.name}
-                                    </Typography>
-                                    <Typography
-                                        variant="body2"
-                                        color="inherit"
-                                        component="p"
-                                    >
-                                        {dragon.description}
-                                    </Typography>
-                                    <TableContainer
-                                        component={Paper}
-                                        color="inherit"
-                                        className={classes.single}
-                                    >
-                                        <Table
-                                            backgroundColor="inherit"
-                                            className={classes.single}
-                                        >
-                                            <TableBody color="inherit">
-                                                <TableRow
-                                                    className={classes.single}
-                                                >
-                                                    <TableCell
-                                                        component="th"
-                                                        scope="row"
-                                                    >
-                                                        <Typography
-                                                            variant="body1"
-                                                            color="inherit"
-                                                            className={
-                                                                classes.single
-                                                            }
-                                                        >
-                                                            Dry Mass
-                                                        </Typography>
-                                                    </TableCell>
-                                                    <TableCell>
-                                                        <Typography
-                                                            variant="body1"
-                                                            color="inherit"
-                                                            className={
-                                                                classes.single
-                                                            }
-                                                        >
-                                                            {dragon.dry_mass_kg}{" "}
-                                                            kg
-                                                        </Typography>
-                                                    </TableCell>
-                                                </TableRow>
-                                                <TableRow
-                                                    className={
-                                                        classes.tablecell
-                                                    }
-                                                >
-                                                    <TableCell
-                                                        component="th"
-                                                        scope="row"
-                                                    >
-                                                        <Typography
-                                                            variant="body1"
-                                                            color="inherit"
-                                                            className={
-                                                                classes.single
-                                                            }
-                                                        >
-                                                            Crew Capacity
-                                                        </Typography>
-                                                    </TableCell>
-                                                    <TableCell>
-                                                        <Typography
-                                                            variant="body1"
-                                                            color="inherit"
-                                                            className={
-                                                                classes.single
-                                                            }
-                                                        >
-                                                            {
-                                                                dragon.crew_capacity
-                                                            }
-                                                        </Typography>
-                                                    </TableCell>
-                                                </TableRow>
-                                                <TableRow
-                                                    className={classes.single}
-                                                >
-                                                    <TableCell
-                                                        component="th"
-                                                        scope="row"
-                                                    >
-                                                        {dragon.active ===
-                                                        true ? (
-                                                            <Typography
-                                                                variant="body1"
-                                                                color="inherit"
-                                                                className={
-                                                                    classes.single
-                                                                }
-                                                            >
-                                                                Active
-                                                            </Typography>
-                                                        ) : (
-                                                            <Typography
-                                                                variant="body1"
-                                                                color="inherit"
-                                                                className={
-                                                                    classes.single
-                                                                }
-                                                            >
-                                                                Not Active
-                                                            </Typography>
-                                                        )}
-                                                    </TableCell>
-                                                    <TableCell
-                                                        component="th"
-                                                        scope="row"
-                                                    >
-                                                        <Typography
-                                                            variant="body1"
-                                                            color="inherit"
-                                                            className={
-                                                                classes.single
-                                                            }
-                                                        ></Typography>
-                                                        <Typography
-                                                            variant="body1"
-                                                            color="inherit"
-                                                            className={
-                                                                classes.single
-                                                            }
-                                                        ></Typography>
-                                                    </TableCell>
-                                                </TableRow>
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                                </CardContent>
-                            </Card>
-                        </Grid>
-                    );
-                })}
+                              Dry Mass
+                            </Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Typography
+                              variant="body1"
+                              color="inherit"
+                              className={classes.single}
+                            >
+                              {dragon.dry_mass_kg} kg
+                            </Typography>
+                          </TableCell>
+                        </TableRow>
+                        <TableRow className={classes.tablecell}>
+                          <TableCell component="th" scope="row">
+                            <Typography
+                              variant="body1"
+                              color="inherit"
+                              className={classes.single}
+                            >
+                              Crew Capacity
+                            </Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Typography
+                              variant="body1"
+                              color="inherit"
+                              className={classes.single}
+                            >
+                              {dragon.crew_capacity}
+                            </Typography>
+                          </TableCell>
+                        </TableRow>
+                        <TableRow className={classes.single}>
+                          <TableCell component="th" scope="row">
+                            {dragon.active === true ? (
+                              <Typography
+                                variant="body1"
+                                color="inherit"
+                                className={classes.single}
+                              >
+                                Active
+                              </Typography>
+                            ) : (
+                              <Typography
+                                variant="body1"
+                                color="inherit"
+                                className={classes.single}
+                              >
+                                Not Active
+                              </Typography>
+                            )}
+                          </TableCell>
+                          <TableCell component="th" scope="row">
+                            <Typography
+                              variant="body1"
+                              color="inherit"
+                              className={classes.single}
+                            ></Typography>
+                            <Typography
+                              variant="body1"
+                              color="inherit"
+                              className={classes.single}
+                            ></Typography>
+                          </TableCell>
+                        </TableRow>
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </CardContent>
+              </Card>
             </Grid>
-        );
+          );
+        })}
+      </Grid>
+    );
 };
 
 export default Dragons;
